@@ -50,7 +50,7 @@ class MyApp(QMainWindow):
         #创建320*120的图片框 用于显示图片 script/title.jpg
         self.title_label = QLabel(self)
         self.title_label.setGeometry(320, 30, 320, 120)
-        self.title_label.setAlignment(Qt.AlignCenter)
+        self.title_label.setAlignment(Qt.AlignCenter) # type: ignore
         # self.title_label.setStyleSheet("border: 1px solid black")
         self.title_label.setPixmap(QPixmap('scripts/title.jpg'))
 
@@ -65,7 +65,7 @@ class MyApp(QMainWindow):
         # 创建图片框
         self.left_label = QLabel(self)
         self.left_label.setGeometry(350, 180, 256, 256)
-        self.left_label.setAlignment(Qt.AlignCenter)
+        self.left_label.setAlignment(Qt.AlignCenter) # type: ignore
         self.left_label.setStyleSheet("border: 1px solid black")
 
         # 创建选择文件的按钮
@@ -74,12 +74,12 @@ class MyApp(QMainWindow):
         self.select_button.clicked.connect(self.select_file)
 
         # 创建生成图片的按钮
-        self.generate_button = QPushButton('生成', self)
+        self.generate_button = QPushButton('病害区域识别', self)
         self.generate_button.setGeometry(30, 210, 200, 50)
         self.generate_button.clicked.connect(self.generate_image)
 
         #创建计算按钮
-        self.general_button = QPushButton('计算', self)
+        self.general_button = QPushButton('混合&计算', self)
         self.general_button.setGeometry(30, 270, 200, 50)
         self.general_button.clicked.connect(self.mix_image)
         # # 创建值标签
@@ -161,10 +161,12 @@ class MyApp(QMainWindow):
 
                 # Load the image and display it in the left label
                 pixmap = QPixmap(new_file_name)
-                self.left_label.setPixmap(pixmap.scaled(256, 256, Qt.KeepAspectRatio))
+                self.left_label.setPixmap(pixmap.scaled(256, 256, Qt.KeepAspectRatio)) # type: ignore
 
             except Exception as e:
-                messagebox.warning(self, 'Error', str(e))
+                messagebox.warning(self, 'Error', str(e)) # type: ignore
+                
+
 
     def show_about_dialog(self):
         about_dialog = QLabel(self)
@@ -226,7 +228,8 @@ class MyApp(QMainWindow):
             print(self.file_name)
             print(self.output_file)
             img1 = Image.open(self.file_name)
-            img2 = Image.open(self.output_file)
+            img2 = Image.open(self.output_file) # type: ignore
+            
             #Debug
             # input_file = "Imgs\input\input_204291.jpg"
             # output_file = "Imgs\output\input_204291_78.jpg"
