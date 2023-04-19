@@ -283,11 +283,6 @@ class MyApp(QMainWindow):
         self.table.setItem(5, 1, itemmj)
 
 
-# def file_selection_changed(self, index):
-#     selected_file = self.file_select.currentText()
-#     print(f"Selected file: {selected_file}")
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MyApp()
